@@ -110,3 +110,31 @@ print(f"MAE  : {mae:.2f}")
 print(f"MSE  : {mse:.2f}")
 print(f"RMSE : {rmse:.2f}")
 print(f"R2   : {r2:.4f}")
+
+# ============================================================
+# MODEL 2: SUPPORT VECTOR CLASSIFICATION
+# ============================================================
+
+X_train_svc, X_test_svc, y_train_svc, y_test_svc = train_test_split(
+    X, y_svc, test_size=0.2, random_state=42, stratify=y_svc
+)
+
+model_svc = Pipeline(
+    steps=[
+        ("preprocessor", preprocessor),
+        ("model", SVC(kernel="rbf"))
+    ]
+)
+
+model_svc.fit(X_train_svc, y_train_svc)
+
+prediksi_svc = model_svc.predict(X_test_svc)
+
+akurasi = accuracy_score(y_test_svc, prediksi_svc)
+
+print("\n===================================================")
+print("HASIL EVALUASI SUPPORT VECTOR CLASSIFICATION")
+print("===================================================")
+print(f"Akurasi SVC: {akurasi:.4f}")
+print("\nClassification Report:")
+print(classification_report(y_test_svc, prediksi_svc))
