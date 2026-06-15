@@ -70,3 +70,11 @@ y_regresi = df["produksi_padi_ton"]
 
 # Target klasifikasi SVC
 y_svc = df["kategori_produksi"]
+
+# 7. Preprocessing data
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("angka", StandardScaler(), ["tahun", "luas_panen_ha", "produktivitas_ku_ha"]),
+        ("kategori", OneHotEncoder(handle_unknown="ignore"), ["kabupaten_kota"])
+    ]
+)
