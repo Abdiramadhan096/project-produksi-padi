@@ -16,3 +16,11 @@ from sklearn.svm import SVC
 
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.metrics import accuracy_score, classification_repor
+
+# 2. Membaca dataset
+file_path = r"E:\PHYTON\Project Statistika\DATASET_PRODUKSI_PADI_2018_2025.xlsx"
+
+df = pd.read_excel(file_path, sheet_name="Dataset_Model")
+
+print("Data berhasil dibaca")
+print(df.to_string())
