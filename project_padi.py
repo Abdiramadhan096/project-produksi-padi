@@ -181,3 +181,15 @@ print("\n===================================================")
 print("HASIL PREDIKSI PRODUKSI PADI TAHUN 2026")
 print("===================================================")
 print(df_2026)
+
+# Grafik Tren Total Produksi Padi 2018-2025 #
+tren_produksi = df.groupby("tahun")["produksi_padi_ton"].sum()
+
+plt.figure(figsize=(8, 5))
+plt.plot(tren_produksi.index, tren_produksi.values, marker="o")
+plt.xlabel("Tahun")
+plt.ylabel("Total Produksi Padi (ton)")
+plt.title("Tren Total Produksi Padi Sulawesi Tengah 2018-2025")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
