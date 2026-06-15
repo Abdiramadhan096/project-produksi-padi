@@ -15,7 +15,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVC
 
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-from sklearn.metrics import accuracy_score, classification_repor
+from sklearn.metrics import accuracy_score, classification_report
 
 # 2. Membaca dataset
 file_path = r"E:\PHYTON\Project Statistika\DATASET_PRODUKSI_PADI_2018_2025.xlsx"
@@ -138,3 +138,27 @@ print("===================================================")
 print(f"Akurasi SVC: {akurasi:.4f}")
 print("\nClassification Report:")
 print(classification_report(y_test_svc, prediksi_svc))
+
+# ============================================================
+# MEMBUAT DATA ESTIMASI TAHUN 2026
+# ============================================================
+
+data_2026 = []
+
+for kabupaten in df["kabupaten_kota"].unique():
+    data_kab = df[df["kabupaten_kota"] == kabupaten]
+
+    # Estimasi luas panen 2026 berdasarkan rata-rata 3 tahun terakhir
+    data_terakhir = data_kab[data_kab["tahun"].isin([2023, 2024, 2025])]
+
+    luas_panen_2026 = data_terakhir["luas_panen_ha"].mean()
+    produktivitas_2026 = data_terakhir["produktivitas_ku_ha"].mean()
+
+    data_2026.append({
+        "tahun": 2026,
+        "kabupaten_kota": kabupaten,
+        "luas_panen_ha": luas_panen_2026,
+        "produktivitas_ku_ha": produktivitas_2026
+    })
+
+df_2026 = pd.DataFrame(data_2026)
