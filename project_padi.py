@@ -31,3 +31,9 @@ df.columns = df.columns.str.lower().str.strip()
 # Pastikan kolom yang dipakai sesuai
 print("\nNama kolom dataset:")
 print(df.columns)
+
+# 4. Membersihkan data
+df = df.dropna()
+
+# Menghapus baris total provinsi jika ada
+df = df[df["kabupaten_kota"].str.lower() != "sulawesi tengah"]
