@@ -24,3 +24,10 @@ df = pd.read_excel(file_path, sheet_name="Dataset_Model")
 
 print("Data berhasil dibaca")
 print(df.to_string())
+
+# 3. Merapikan nama kolom
+df.columns = df.columns.str.lower().str.strip()
+
+# Pastikan kolom yang dipakai sesuai
+print("\nNama kolom dataset:")
+print(df.columns)
