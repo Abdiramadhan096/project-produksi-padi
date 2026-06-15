@@ -162,3 +162,22 @@ for kabupaten in df["kabupaten_kota"].unique():
     })
 
 df_2026 = pd.DataFrame(data_2026)
+
+# ============================================================
+# PREDIKSI PRODUKSI DAN KATEGORI TAHUN 2026
+# ============================================================
+
+X_2026 = df_2026[fitur]
+
+df_2026["prediksi_produksi_padi_ton"] = model_regresi.predict(X_2026)
+df_2026["kategori_prediksi"] = model_svc.predict(X_2026)
+
+# Membulatkan angka agar rapi
+df_2026["luas_panen_ha"] = df_2026["luas_panen_ha"].round(2)
+df_2026["produktivitas_ku_ha"] = df_2026["produktivitas_ku_ha"].round(2)
+df_2026["prediksi_produksi_padi_ton"] = df_2026["prediksi_produksi_padi_ton"].round(2)
+
+print("\n===================================================")
+print("HASIL PREDIKSI PRODUKSI PADI TAHUN 2026")
+print("===================================================")
+print(df_2026)
