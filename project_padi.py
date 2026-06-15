@@ -59,3 +59,14 @@ print(f"Tinggi  : > {batas_tinggi:.2f} ton")
 
 print("\nJumlah kategori:")
 print(df["kategori_produksi"].value_counts())
+
+# 6. Menentukan fitur/input
+fitur = ["tahun", "kabupaten_kota", "luas_panen_ha", "produktivitas_ku_ha"]
+
+X = df[fitur]
+
+# Target regresi
+y_regresi = df["produksi_padi_ton"]
+
+# Target klasifikasi SVC
+y_svc = df["kategori_produksi"]
